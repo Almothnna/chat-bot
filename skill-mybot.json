@@ -1,0 +1,247 @@
+{
+  "intents": [
+    {
+      "intent": "goodbye",
+      "examples": [
+        {
+          "text": "bb"
+        },
+        {
+          "text": "bye"
+        },
+        {
+          "text": "ciao"
+        },
+        {
+          "text": "cya"
+        },
+        {
+          "text": "goodbye"
+        },
+        {
+          "text": "Ok, thanks"
+        },
+        {
+          "text": "thank you"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "greetings",
+      "examples": [
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "hey"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "hola"
+        },
+        {
+          "text": "Welcome"
+        },
+        {
+          "text": "yo"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "what",
+      "examples": [
+        {
+          "text": "info"
+        },
+        {
+          "text": "What"
+        },
+        {
+          "text": "What is this page"
+        },
+        {
+          "text": "what's the point of this page"
+        },
+        {
+          "text": "why"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1624958743267",
+      "context": {
+        "l": "#Who"
+      },
+      "conditions": "#Who",
+      "event_name": "input",
+      "dialog_node": "handler_1_1624958743274"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              },
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_3_1624958743267",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1624958743274",
+      "previous_sibling": "handler_1_1624958743274"
+    },
+    {
+      "type": "standard",
+      "title": "Ask",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "This page is designed to control the robot"
+              },
+              {
+                "text": "Control a robot"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#what",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1625113285835",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Farewell",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Goodbye"
+              },
+              {
+                "text": "till then"
+              },
+              {
+                "text": "come again"
+              },
+              {
+                "text": "bye"
+              },
+              {
+                "text": "cya"
+              },
+              {
+                "text": "talk to you later"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#goodbye",
+      "dialog_node": "node_8_1625113350821",
+      "previous_sibling": "node_1_1625113285835"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "Welcome",
+      "variable": "$l",
+      "dialog_node": "slot_3_1624958743267"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              },
+              {
+                "text": "Hi. How can I help you?"
+              },
+              {
+                "text": "Welcome. How can I help you?"
+              },
+              {
+                "text": "What do you need"
+              },
+              {
+                "text": "Hola "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          },
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#greetings",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "mybot",
+  "language": "en",
+  "description": ""
+}
